@@ -16,4 +16,7 @@ jobs:
       run: docker build . --file Dockerfile --tag bot-image
 
     - name: Deploy
-      run: docker run --name test -e TOKEN ${{ secrets.TOKEN }} ./bot-image 
+      runs:
+        using: 'docker'
+        image: 'Dockerfile'
+        args: -e TOKEN ${{ secrets.TOKEN }}
